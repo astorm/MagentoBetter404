@@ -1,0 +1,15 @@
+{
+    "name": "pulsestorm/magento-better404",
+    "description": "A programmer's 404 page for the Magento Ecommerce system.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alan Storm",
+            "email": "astorm@pulsestorm.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
