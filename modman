@@ -1,0 +1,6 @@
+app/code/community/Pulsestorm/Better404/Block/404.php   app/code/community/Pulsestorm/Better404/Block/404.php
+app/code/community/Pulsestorm/Better404/etc/config.xml  app/code/community/Pulsestorm/Better404/etc/config.xml
+app/code/community/Pulsestorm/Better404/Model/Lint.php  app/code/community/Pulsestorm/Better404/Model/Lint.php
+app/code/community/Pulsestorm/Better404/Model/Observer.php  app/code/community/Pulsestorm/Better404/Model/Observer.php
+app/design/frontend/base/default/template/pulsestorm_better404/404.phtml    app/design/frontend/base/default/template/pulsestorm_better404/404.phtml
+app/etc/modules/Pulsestorm_Better404.xml    app/etc/modules/Pulsestorm_Better404.xml
