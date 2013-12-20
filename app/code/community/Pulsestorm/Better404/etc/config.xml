@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Pulsestorm_Better404>
+			<version>0.1.0</version>
+		</Pulsestorm_Better404>
+	</modules>
+    
+	<global>         
+
+		<models>
+			<pulsestorm_better404>
+				<class>Pulsestorm_Better404_Model</class>
+			</pulsestorm_better404>
+		</models>
+
+		<blocks>
+			<pulsestorm_better404>
+				<class>Pulsestorm_Better404_Block</class>
+			</pulsestorm_better404>
+		</blocks>
+		
+        <events>
+            <controller_action_layout_generate_blocks_after>
+                <observers>
+                    <pulsestorm_better404more_blocks>
+                        <type>singleton</type>
+                        <class>pulsestorm_better404/observer</class>
+                        <method>addExtraBlocks</method>
+                    </pulsestorm_better404more_blocks>
+                </observers>
+            </controller_action_layout_generate_blocks_after>
+        </events>
+
+	</global>
+</config>

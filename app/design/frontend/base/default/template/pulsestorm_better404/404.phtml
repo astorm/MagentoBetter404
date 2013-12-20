@@ -1,0 +1,99 @@
+<?php
+    var_dump('Unit Tests');
+    var_dump('GitHub Repository');        
+    var_dump('Composer');            
+?>
+<h1>Page not Found</h1>
+<p>
+    We couldn't find a page at the URL you specified.  The information below will help 
+    a Magento programmer figure out why. 
+</p>
+
+<h2>Original Path</h2>
+<p>
+    Original Path Information <code><?php echo $this->getUrlOriginalPath();?></code>.
+</p>
+
+<h2>Module/Front Name</h2>
+<p>
+    Module/Front Name: <code><?php echo $this->getUrlModuleName(); ?></code>.
+</p>
+    
+    <?php $claimed = $this->getClaimed(); ?>
+    <?php if(!$claimed){ ?>
+        <p>
+            No modules claim [<code><?php echo $this->getUrlModuleName(); ?></code>] as a 
+            <code>&lt;frontName/&gt;</code>`.
+        </p>
+        <?php return; //no modules?  return early ?> 
+    <?php } ?>
+    
+    <?php if(count($claimed) > 1){ ?>
+    <p>
+        <code><?php echo $this->getUrlModuleName(); ?></code> is claimed by multiple modules, which only leads to tears.
+    </p>
+        <?php return; //too many claims?  return early ?>
+    <?php } ?>
+
+    <?php if(count($claimed) == 1){ ?>
+        <p>
+            The Module/Front Name [<code><?php echo $this->getUrlModuleName(); ?></code>] is claimed by 
+            the Magento module <code><?php echo $this->getClaimedByName(); ?></code>.
+        </p>
+    <?php } ?>
+
+    <?php if(count($claimed) == 1 && $this->getExtraModules()){ ?>
+        If Magento can't find a controller in <code><?php echo $this->getClaimedByName(); ?></code>, 
+        the system will used the following controller class name prefixes to search for a controller.
+        
+        <code>&lt;modules/&gt;</code> node in the <code>&lt;routers/&gt;</code> node)
+        <ul style="margin-left:2em;">            
+            <?php foreach($this->getExtraModules() as $module){ ?>
+                <li><code><?php echo $module;?></code></li>
+            <?php } ?>
+        </ul>
+    <?php } ?>
+    
+<?php $claimed_by = $this->getClaimedByName();?>
+<h2>Controller Name</h2>
+    <p>
+        Controller Name: <code><?php  echo $this->getUrlControllerName(); ?></code>
+    </p>
+
+    <?php if(!$this->getControllerFileExists($claimed_by)){ ?>
+        <p>
+        The controller name <code><?php  echo $this->getUrlControllerName(); ?></code> matches the following controller file, but this file does not exist.
+        </p>
+        <p><textarea style="width:100%" readonly="readonly"><?php echo $this->getControllerFilePath($claimed_by); ?></textarea></p>
+        <?php return; //early return for failed match ?>
+    <?php } ?>
+
+    <?php if(!$this->getControllerClassExists($claimed_by)){ ?>
+        <p>
+        We found the following controller file, but this file did not contain
+        a definition for the controller class <code><?php echo $this->getControllerClassName($claimed_by)?></code>.
+        </p>
+        <p><textarea style="width:100%" readonly="readonly"><?php echo $this->getControllerFilePath($claimed_by); ?></textarea></p>        
+        <?php return; //early return for failed match ?>
+    <?php } //early return for failed match ?>
+
+
+    <?php $info = $this->getControllerInformation($claimed_by); ?>
+    <p>
+        The controller name <code><?php  echo $this->getUrlControllerName(); ?></code> uses the 
+        controller class <code><?php echo $info['class_name']; ?></code>, defined in the following file.
+    </p>
+    <p><textarea style="width:100%" readonly="readonly"><?php echo $this->getControllerFilePath($claimed_by); ?></textarea></p>        
+    
+<?php $class_name = $info['class_name']; ?>    
+<h2>Action Name</h2>
+<p>
+    Action Name: <code><?php echo $this->getUrlActionName(); ?></code>
+</p>
+
+    <?php if(!$this->getActionMethodExists($class_name, $this->getUrlActionName())){ ?>
+        <p>
+        The action method <code><?php echo $this->getUrlActionName(); ?>Action</code> is <strong>not</strong> present in the controller file.
+        </p>
+        <?php return; //early return for failed match ?>
+    <?php } ?>
