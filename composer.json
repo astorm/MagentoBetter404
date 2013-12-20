@@ -1,6 +1,6 @@
 {
     "name": "pulsestorm/magento-better404",
-    "type": "library",
+    "type": "magento-module",
     "description": "A programmer's 404 page for the Magento Ecommerce system.",
     "keywords":["magento","mvc"],
     "homepage":"https://github.com/astorm/MagentoBetter404",
