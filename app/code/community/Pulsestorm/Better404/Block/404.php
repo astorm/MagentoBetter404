@@ -83,4 +83,9 @@ class Pulsestorm_Better404_Block_404 extends Mage_Core_Block_Template
         $this->_lint = Mage::getModel('pulsestorm_better404/lint');
         return $this->_lint;
     }
+    
+    protected function _safeHtml($string)
+    {
+        return strip_tags($string);
+    }
 }
